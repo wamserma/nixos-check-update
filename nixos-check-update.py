@@ -86,14 +86,16 @@ def getNewCommits(basecommit, commits):
                     secupdates = secupdates + 1
                 elif 'security' in u:
                     secupdates = secupdates + 1
-            print(str(len(updates)))
+            nupstr = str(len(updates))
             if len(updates) == 1:
-                print(' new commit since your last rebuild.')
+                print(nupstr + ' new commit since your last rebuild.')
             else:
-                print(' new commits since your last rebuild.')
+                print(nupstr + ' new commits since your last rebuild.')
             if secupdates > 0:
                 print('At least ' + str(secupdates) +
                       ' of these are security related.')
+            print("Run 'sudo nixos-rebuild dry-build --upgrade | more'" +
+                  " to see how your system is affected.")
 
 
 getNewCommits(ncommit, commits)
